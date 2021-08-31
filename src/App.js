@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import './App.css';
-import Data from './components/Data';
-import Vaccination from './components/Vaccination';
+import DataTable from './components/GeneralDataTable';
+import VaccinationTable from './components/VaccinationTable';
+import TestTable from './components/TestTable';
+import Links from './components/Links';
 
 const commas = (x) => {
   if (x) {
@@ -36,6 +38,15 @@ const createDat = (obj) => {
     people_vaccinated: commas(obj.people_vaccinated),
     people_fully_vaccinated_per_hundred: commas(obj.people_fully_vaccinated_per_hundred),
     people_fully_vaccinated: commas(obj.people_fully_vaccinated),
+    // Tests
+    positive_rate: commas(obj.positive_rate),
+    tests_per_case: commas(obj.tests_per_case),
+    new_tests: commas(obj.new_tests),
+    new_tests_per_thousand: commas(obj.new_tests_per_thousand),
+    new_tests_smoothed: commas(obj.new_tests_smoothed),
+    new_tests_smoothed_per_thousand: commas(obj.new_tests_smoothed_per_thousand),
+    total_tests: commas(obj.total_tests),
+    total_tests_per_thousand: commas(obj.total_tests_per_thousand),
   };
 };
 
@@ -103,18 +114,22 @@ function App() {
     <Router>
       <ThemeProvider theme={darkTheme}>
         <div>
-          <h1><a href="https://artnoi.com">artnoi.com</a>/19</h1>
+          <h1>19.<a href="https://artnoi.com">artnoi.com</a></h1>
           <p>A COVID-19 tracker for comparison with Thailand</p>
         </div>
         <div className="search">
           <TextField label="Filter Location" onChange={onLocationChange} />
           <p>Total locations: {covidData.length}</p>
+          <Links />
         </div>
         <Route exact path="/">
-          <Data data={filtered} thailand={thailand} />
+          <DataTable data={filtered} thailand={thailand} />
         </Route>
         <Route exact path="/vaccination">
-          <Vaccination data={filtered} thailand={thailand} />
+          <VaccinationTable data={filtered} thailand={thailand} />
+        </Route>
+        <Route exact path="/test">
+          <TestTable data={filtered} thailand={thailand} />
         </Route>
       </ThemeProvider>
     </Router>
