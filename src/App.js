@@ -7,6 +7,7 @@ import DataTable from './components/GeneralDataTable';
 import VaccinationTable from './components/VaccinationTable';
 import TestTable from './components/TestTable';
 import Links from './components/Links';
+import Footer from './components/Footer';
 
 const commas = (x) => {
   if (x) {
@@ -116,6 +117,7 @@ function App() {
         <div>
           <h1>19.<a href="https://artnoi.com">artnoi.com</a></h1>
           <p>A COVID-19 tracker for comparison with Thailand</p>
+          <p>Source: <a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json">OWID</a></p>
         </div>
         <div className="search">
           <TextField label="Filter Location" onChange={onLocationChange} />
@@ -131,6 +133,7 @@ function App() {
         <Route exact path="/test">
           <TestTable data={filtered} thailand={thailand} />
         </Route>
+        <Footer />
       </ThemeProvider>
     </Router>
   );
