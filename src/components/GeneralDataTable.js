@@ -1,21 +1,29 @@
+import { useContext } from 'react';
+import { appContext } from '../App';
 import GeneralDataRow from './GeneralDataRow';
 
 function GeneralData({ data, thailand }) {
+    const { relative } = useContext(appContext);
     return (
         <table>
-            <caption>Global COVID-19 Data</caption>
+            <caption><strong>
+                Global COVID-19 Data {relative ? "(PM = Per Million)" : null}
+            </strong></caption>
             <tbody>
                 <tr className="small-table-header">
                     <th>Location</th>
                     <th>Population</th>
-                    <th className="relative">New Cases (Per Million)</th>
-                    <th>New Cases</th>
-                    <th>New Cases (Smoothed)</th>
-                    <th className="relative">New Deaths (Per Million)</th>
-                    <th>New Deaths</th>
-                    <th>New Deaths (Smoothed)</th>
-                    <th className="relative">Total Deaths (Per Million)</th>
-                    <th>Total Deaths</th>
+                    {relative ? <>
+                        <th>New Cases PM</th>
+                        <th>New Deaths PM</th>
+                        <th>Total Deaths PM</th>
+                    </> : <>
+                        <th>New Cases</th>
+                        <th>New Cases (Smoothed)</th>
+                        <th>New Deaths</th>
+                        <th>New Deaths (Smoothed)</th>
+                        <th>Total Deaths</th>
+                    </>}
                     <th>Updated</th>
                 </tr>
                 <GeneralDataRow data={thailand} />

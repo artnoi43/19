@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import VaccinationTable from './components/VaccinationTable';
 import TestTable from './components/TestTable';
 import Links from './components/Links';
 import Footer from './components/Footer';
+import RelativeButton from './components/RelativeButton';
 
 const commas = (x) => {
   if (x) {
@@ -33,12 +34,14 @@ const createDat = (obj) => {
     last_updated_date: obj.last_updated_date,
     // Vaccination
     new_vaccinations: commas(obj.new_vaccinations),
+    new_vaccinations_smoothed_per_million: commas(obj.new_vaccinations_smoothed_per_million),
     total_vaccinations_per_hundred: commas(obj.total_vaccinations_per_hundred),
     total_vaccinations: commas(obj.total_vaccinations),
     people_vaccinated_per_hundred: commas(obj.people_vaccinated_per_hundred),
     people_vaccinated: commas(obj.people_vaccinated),
     people_fully_vaccinated_per_hundred: commas(obj.people_fully_vaccinated_per_hundred),
     people_fully_vaccinated: commas(obj.people_fully_vaccinated),
+    total_boosters_per_hundred: commas(obj.total_boosters_per_hundred),
     // Tests
     positive_rate: commas(obj.positive_rate),
     tests_per_case: commas(obj.tests_per_case),
@@ -57,12 +60,16 @@ const darkTheme = createTheme({
   }
 });
 
+export const appContext = createContext(null);
+
 function App() {
 
+  const [path, setPath] = useState("/");
   const [covidData, setCovidData] = useState([]);
   const [thailand, setThailand] = useState({});
   const [filtered, setFiltered] = useState([]);
   const [location, setLocation] = useState('');
+  const [relative, setRelative] = useState(true);
 
   useEffect(() => {
 
@@ -114,26 +121,29 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={darkTheme}>
-        <div>
-          <h1>19.<a href="https://artnoi.com">artnoi.com</a></h1>
-          <p>A COVID-19 tracker for comparison with Thailand</p>
-          <p>Source: <a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json">OWID</a></p>
-        </div>
-        <div className="search">
-          <TextField label="Filter Location" onChange={onLocationChange} />
-          <p>Total locations: {covidData.length}</p>
-          <Links />
-        </div>
-        <Route exact path="/">
-          <DataTable data={filtered} thailand={thailand} />
-        </Route>
-        <Route exact path="/vaccination">
-          <VaccinationTable data={filtered} thailand={thailand} />
-        </Route>
-        <Route exact path="/test">
-          <TestTable data={filtered} thailand={thailand} />
-        </Route>
-        <Footer />
+        <appContext.Provider value={{ path, setPath, relative, setRelative }}>
+          <div>
+            <h1>19.<a href="https://artnoi.com">artnoi.com</a></h1>
+            <p>A COVID-19 tracker for comparison with Thailand</p>
+            <p>Source: <a href="https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json">OWID</a></p>
+          </div>
+          <div className="search">
+            <TextField label="Filter Location" onChange={onLocationChange} />
+            <p>Total Locations: {covidData.length}</p>
+            <RelativeButton />
+            <Links />
+          </div>
+          <Route exact path="/">
+            <DataTable data={filtered} thailand={thailand} />
+          </Route>
+          <Route exact path="/vaccination">
+            <VaccinationTable data={filtered} thailand={thailand} />
+          </Route>
+          <Route exact path="/test">
+            <TestTable data={filtered} thailand={thailand} />
+          </Route>
+          <Footer />
+        </appContext.Provider>
       </ThemeProvider>
     </Router>
   );
