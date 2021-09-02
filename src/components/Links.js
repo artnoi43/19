@@ -9,13 +9,13 @@ function Links() {
         <>
             <ButtonGroup>
                 <Button onClick={() => setPath("/")} disabled={path === "/"}>
-                    <Link to="/">Click Here For General Data</Link><br />
+                    <Link to="/">General Data</Link><br />
                 </Button>
                 <Button onClick={() => setPath("/vaccination")} disabled={path === "/vaccination"}>
-                    <Link to="/vaccination">Click Here for Vaccinaion Data</Link><br />
+                    <Link to="/vaccination">Vaccinaion Data</Link><br />
                 </Button>
                 <Button onClick={() => setPath("/test")} disabled={path === "/test"}>
-                    <Link to="/test">Click Here for Test Data</Link>
+                    <Link to="/test">Test Data</Link>
                 </Button>
             </ButtonGroup>
         </>
