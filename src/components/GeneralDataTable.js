@@ -9,23 +9,23 @@ function GeneralData({ data, thailand }) {
             <caption><strong>
                 Global COVID-19 Data {relative ? "(PM = Per Million)" : null}
             </strong></caption>
+            <thead className="small-table-header">
+                <th>Location</th>
+                <th>Population</th>
+                {relative ? <>
+                    <th>New Cases PM</th>
+                    <th>New Deaths PM</th>
+                    <th>Total Deaths PM</th>
+                </> : <>
+                    <th>New Cases</th>
+                    <th>New Cases (Smoothed)</th>
+                    <th>New Deaths</th>
+                    <th>New Deaths (Smoothed)</th>
+                    <th>Total Deaths</th>
+                </>}
+                <th>Updated</th>
+            </thead>
             <tbody>
-                <tr className="small-table-header">
-                    <th>Location</th>
-                    <th>Population</th>
-                    {relative ? <>
-                        <th>New Cases PM</th>
-                        <th>New Deaths PM</th>
-                        <th>Total Deaths PM</th>
-                    </> : <>
-                        <th>New Cases</th>
-                        <th>New Cases (Smoothed)</th>
-                        <th>New Deaths</th>
-                        <th>New Deaths (Smoothed)</th>
-                        <th>Total Deaths</th>
-                    </>}
-                    <th>Updated</th>
-                </tr>
                 <GeneralDataRow data={thailand} />
                 {data.map(
                     data => <GeneralDataRow key={data.location} data={data} />
