@@ -2,6 +2,28 @@ import { useContext } from 'react';
 import { appContext } from '../App'
 import TestRow from './TestRow';
 
+function RelativeHeaders() {
+    return (
+        <>
+            <th className="relative">Positive Rate</th>
+            <th className="relative">Tests Per Case</th>
+            <th className="relative">New Tests PT</th>
+            <th className="relative">New Tests Smoothed PT</th>
+            <th className="relative">Total Tests PT</th>
+        </>
+    );
+};
+
+function AbsoluteHeaders() {
+    return (
+        <>
+            <th>New Tests</th>
+            <th>New Tests Smoothed</th>
+            <th>Total Tests</th>
+        </>
+    );
+};
+
 function TestTable({ data, thailand }) {
     const { relative } = useContext(appContext);
 
@@ -13,17 +35,7 @@ function TestTable({ data, thailand }) {
                 </strong></caption>
                 <thead className="small-table-header">
                     <th>Location</th>
-                    {relative ? <>
-                        <th className="relative">Positive Rate</th>
-                        <th className="relative">Tests Per Case</th>
-                        <th className="relative">New Tests PT</th>
-                        <th className="relative">New Tests Smoothed PT</th>
-                        <th className="relative">Total Tests PT</th>
-                    </> : <>
-                        <th>New Tests</th>
-                        <th>New Tests Smoothed</th>
-                        <th>Total Tests</th>
-                    </>}
+                    {relative ? <RelativeHeaders /> : <AbsoluteHeaders />}
                 </thead>
                 <tbody>
                     <TestRow data={thailand} />

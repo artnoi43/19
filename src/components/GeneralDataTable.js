@@ -2,6 +2,28 @@ import { useContext } from 'react';
 import { appContext } from '../App';
 import GeneralDataRow from './GeneralDataRow';
 
+function RelativeHeaders() {
+    return (
+        <>
+            <th>New Cases PM</th>
+            <th>New Deaths PM</th>
+            <th>Total Deaths PM</th>
+        </>
+    );
+};
+
+function AbsoluteHeaders() {
+    return (
+        <>
+            <th>New Cases</th>
+            <th>New Cases (Smoothed)</th>
+            <th>New Deaths</th>
+            <th>New Deaths (Smoothed)</th>
+            <th>Total Deaths</th>
+        </>
+    );
+};
+
 function GeneralData({ data, thailand }) {
     const { relative } = useContext(appContext);
     return (
@@ -12,17 +34,7 @@ function GeneralData({ data, thailand }) {
             <thead className="small-table-header">
                 <th>Location</th>
                 <th>Population</th>
-                {relative ? <>
-                    <th>New Cases PM</th>
-                    <th>New Deaths PM</th>
-                    <th>Total Deaths PM</th>
-                </> : <>
-                    <th>New Cases</th>
-                    <th>New Cases (Smoothed)</th>
-                    <th>New Deaths</th>
-                    <th>New Deaths (Smoothed)</th>
-                    <th>Total Deaths</th>
-                </>}
+                {relative ? <RelativeHeaders /> : <AbsoluteHeaders />}
                 <th>Updated</th>
             </thead>
             <tbody>
@@ -32,7 +44,7 @@ function GeneralData({ data, thailand }) {
                 )}
             </tbody>
         </table>
-    )
-}
+    );
+};
 
-export default GeneralData
+export default GeneralData;
