@@ -10,47 +10,12 @@ import Links from './components/Links';
 import Footer from './components/Footer';
 import RelativeButton from './components/RelativeButton';
 
+// For thousand operator
 const commas = (x) => {
   if (x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   } else {
     return x;
-  };
-}
-
-const createDat = (obj) => {
-  return {
-    location: obj.location,
-    // General COVID data
-    population: commas(obj.population),
-    new_cases: commas(obj.new_cases),
-    new_cases_per_million: commas(obj.new_cases_per_million),
-    new_cases_smoothed: commas(obj.new_cases_smoothed),
-    new_deaths: commas(obj.new_deaths),
-    new_deaths_per_million: commas(obj.new_deaths_per_million),
-    new_deaths_smoothed: commas(obj.new_deaths_smoothed),
-    total_deaths: commas(obj.total_deaths),
-    total_deaths_per_million: commas(obj.total_deaths_per_million),
-    last_updated_date: obj.last_updated_date,
-    // Vaccination
-    new_vaccinations: commas(obj.new_vaccinations),
-    new_vaccinations_smoothed_per_million: commas(obj.new_vaccinations_smoothed_per_million),
-    total_vaccinations_per_hundred: commas(obj.total_vaccinations_per_hundred),
-    total_vaccinations: commas(obj.total_vaccinations),
-    people_vaccinated_per_hundred: commas(obj.people_vaccinated_per_hundred),
-    people_vaccinated: commas(obj.people_vaccinated),
-    people_fully_vaccinated_per_hundred: commas(obj.people_fully_vaccinated_per_hundred),
-    people_fully_vaccinated: commas(obj.people_fully_vaccinated),
-    total_boosters_per_hundred: commas(obj.total_boosters_per_hundred),
-    // Tests
-    positive_rate: commas(obj.positive_rate),
-    tests_per_case: commas(obj.tests_per_case),
-    new_tests: commas(obj.new_tests),
-    new_tests_per_thousand: commas(obj.new_tests_per_thousand),
-    new_tests_smoothed: commas(obj.new_tests_smoothed),
-    new_tests_smoothed_per_thousand: commas(obj.new_tests_smoothed_per_thousand),
-    total_tests: commas(obj.total_tests),
-    total_tests_per_thousand: commas(obj.total_tests_per_thousand),
   };
 };
 
@@ -83,10 +48,10 @@ function App() {
         for (let k in dat) {
           switch (k) {
             case "THA":
-              setThailand(createDat(dat[k]));
+              setThailand(dat[k]);
               break;
             default:
-              arr.push(createDat(dat[k]))
+              arr.push(dat[k]);
           }
         }
         setCovidData(arr);
@@ -121,7 +86,7 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={darkTheme}>
-        <appContext.Provider value={{ path, setPath, relative, setRelative }}>
+        <appContext.Provider value={{ path, setPath, relative, setRelative, commas }}>
           <div>
             <h1>19.<a href="https://artnoi.com">artnoi.com</a></h1>
             <p>A COVID-19 tracker for comparison with Thailand</p>
@@ -147,6 +112,6 @@ function App() {
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;
