@@ -20,7 +20,7 @@ function GeneralDataRow({ data }) {
             </>}
             <td>{data.last_updated_date}</td>
         </tr>
-    )
-}
+    );
+};
 
-export default GeneralDataRow
+export default GeneralDataRow;

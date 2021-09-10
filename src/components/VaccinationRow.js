@@ -19,7 +19,7 @@ function VaccinationRow({ data }) {
                 <td>{data.people_fully_vaccinated ? commas(data.people_fully_vaccinated) : "N/A"}</td>
             </>}
         </tr>
-    )
-}
+    );
+};
 
-export default VaccinationRow
+export default VaccinationRow;

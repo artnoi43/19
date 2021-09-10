@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { appContext } from '../App';
 
 function TestRow({ data }) {
-    const { relative, commas } = useContext(appContext)
+    const { relative, commas } = useContext(appContext);
     return (
         <tr>
             <td><strong>{data.location}</strong></td>
@@ -18,7 +18,7 @@ function TestRow({ data }) {
                 <td>{data.total_tests ? commas(data.total_tests) : "N/A"}</td>
             </>}
         </tr>
-    )
-}
+    );
+};
 
-export default TestRow
+export default TestRow;
