@@ -7,10 +7,10 @@ function RelativeButton() {
     return (
         <ButtonGroup>
             <Button onClick={() => setRelative(true)} disabled={relative ? true : false}>
-                See relative values
+                Relative Data
             </Button>
             <Button onClick={() => setRelative(false)} disabled={relative ? false : true}>
-                See absolute values
+                Absolute Data
             </Button>
         </ButtonGroup>
     )

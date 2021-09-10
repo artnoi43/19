@@ -19,7 +19,7 @@ function Links() {
                 </Button>
             </ButtonGroup>
         </>
-    )
-}
+    );
+};
 
-export default Links
+export default Links;
