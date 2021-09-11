@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { appContext } from '../App';
+import LocationData from './LocationData';
 
 function RelativeData({ data, commas }) {
     return (
         <>
-            <td><strong>{data.location}</strong></td>
-            <td>{data.population ? commas(data.population) : "N/A"}</td>
+            <LocationData data={data} commas={commas} />
             <td>{data.new_cases_per_million ? commas(data.new_cases_per_million) : "N/A"}</td>
             <td>{data.new_deaths_per_million ? commas(data.new_deaths_per_million) : "N/A"}</td>
             <td>{data.total_deaths_per_million ? commas(data.total_deaths_per_million) : "N/A"}</td>
@@ -17,8 +17,7 @@ function RelativeData({ data, commas }) {
 function AbsoluteData({ data, commas }) {
     return (
         <>
-            <td><strong>{data.location}</strong></td>
-            <td>{data.population ? commas(data.population) : "N/A"}</td>
+            <LocationData data={data} commas={commas} />
             <td>{data.new_cases ? commas(data.new_cases) : "N/A"}</td>
             <td>{data.new_cases_smoothed ? commas(data.new_cases_smoothed) : "N/A"}</td>
             <td>{data.new_deaths ? commas(data.new_deaths) : "N/A"}</td>

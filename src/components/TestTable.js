@@ -1,11 +1,12 @@
 import { useContext } from 'react';
-import { appContext } from '../App'
+import { appContext } from '../App';
+import LocationHeader from './LocationHeader';
 import TestRow from './TestRow';
 
 function RelativeHeaders() {
     return (
         <>
-            <th>Location</th>
+            <LocationHeader />
             <th>Positive Rate</th>
             <th>Tests Per Case</th>
             <th>New Tests PT</th>
@@ -18,7 +19,7 @@ function RelativeHeaders() {
 function AbsoluteHeaders() {
     return (
         <>
-            <th>Location</th>
+            <LocationHeader />
             <th>New Tests</th>
             <th>New Tests Smoothed</th>
             <th>Total Tests</th>

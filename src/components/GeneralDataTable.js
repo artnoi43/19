@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { appContext } from '../App';
+import LocationHeader from './LocationHeader';
 import GeneralDataRow from './GeneralDataRow';
 
 function RelativeHeaders() {
     return (
         <>
-            <th>Location</th>
-            <th>Population</th>
+            <LocationHeader />
             <th>New Cases PM</th>
             <th>New Deaths PM</th>
             <th>Total Deaths PM</th>
@@ -18,8 +18,7 @@ function RelativeHeaders() {
 function AbsoluteHeaders() {
     return (
         <>
-            <th>Location</th>
-            <th>Population</th>
+            <LocationHeader />
             <th>New Cases</th>
             <th>New Cases (Smoothed)</th>
             <th>New Deaths</th>
