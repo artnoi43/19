@@ -42,7 +42,7 @@ function GeneralData({ data, thailand }) {
             <tbody>
                 <GeneralDataRow data={thailand} />
                 {data.map(
-                    data => <GeneralDataRow key={data.location} data={data} />
+                    countryData => <GeneralDataRow key={countryData.location} data={countryData} />
                 )}
             </tbody>
         </table>

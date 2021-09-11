@@ -41,7 +41,7 @@ function Vaccination({ data, thailand }) {
             <tbody>
                 <VaccinationRow data={thailand} />
                 {data.map(
-                    data => <VaccinationRow key={data.location} data={data} />
+                    countryData => <VaccinationRow key={countryData.location} data={countryData} />
                 )}
             </tbody>
         </table>

@@ -42,7 +42,7 @@ function TestTable({ data, thailand }) {
                 <tbody>
                     <TestRow data={thailand} />
                     {data.map(
-                        data => <TestRow key={data.location} data={data} />
+                        countryData => <TestRow key={countryData.location} data={countryData} />
                     )}
                 </tbody>
             </table >
