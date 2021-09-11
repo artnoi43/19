@@ -5,6 +5,7 @@ import VaccinationRow from './VaccinationRow';
 function RelativeHeaders() {
     return (
         <>
+            <th>Location</th>
             <th>New Vaccination Smoothed PM</th>
             <th>Total Vaccinations PH</th>
             <th>People Vaccinated PH</th>
@@ -17,6 +18,7 @@ function RelativeHeaders() {
 function AbsoluteHeaders() {
     return (
         <>
+            <th>Location</th>
             <th>New Vaccinations</th>
             <th>Total Vaccinations</th>
             <th>People Vaccinated</th>
@@ -33,7 +35,6 @@ function Vaccination({ data, thailand }) {
                 Global COVID-19 Vaccination Data {relative ? "(PM = Per Million, PH = Per Hundred)" : null}
             </strong></caption>
             <thead className="small-table-header">
-                <th>Location</th>
                 {relative ? <RelativeHeaders /> : <AbsoluteHeaders />}
             </thead>
             <tbody>

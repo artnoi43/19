@@ -5,9 +5,12 @@ import GeneralDataRow from './GeneralDataRow';
 function RelativeHeaders() {
     return (
         <>
+            <th>Location</th>
+            <th>Population</th>
             <th>New Cases PM</th>
             <th>New Deaths PM</th>
             <th>Total Deaths PM</th>
+            <th>Updated</th>
         </>
     );
 };
@@ -15,11 +18,14 @@ function RelativeHeaders() {
 function AbsoluteHeaders() {
     return (
         <>
+            <th>Location</th>
+            <th>Population</th>
             <th>New Cases</th>
             <th>New Cases (Smoothed)</th>
             <th>New Deaths</th>
             <th>New Deaths (Smoothed)</th>
             <th>Total Deaths</th>
+            <th>Updated</th>
         </>
     );
 };
@@ -32,10 +38,7 @@ function GeneralData({ data, thailand }) {
                 Global COVID-19 Data {relative ? "(PM = Per Million)" : null}
             </strong></caption>
             <thead className="small-table-header">
-                <th>Location</th>
-                <th>Population</th>
                 {relative ? <RelativeHeaders /> : <AbsoluteHeaders />}
-                <th>Updated</th>
             </thead>
             <tbody>
                 <GeneralDataRow data={thailand} />

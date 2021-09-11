@@ -5,11 +5,12 @@ import TestRow from './TestRow';
 function RelativeHeaders() {
     return (
         <>
-            <th className="relative">Positive Rate</th>
-            <th className="relative">Tests Per Case</th>
-            <th className="relative">New Tests PT</th>
-            <th className="relative">New Tests Smoothed PT</th>
-            <th className="relative">Total Tests PT</th>
+            <th>Location</th>
+            <th>Positive Rate</th>
+            <th>Tests Per Case</th>
+            <th>New Tests PT</th>
+            <th>New Tests Smoothed PT</th>
+            <th>Total Tests PT</th>
         </>
     );
 };
@@ -17,6 +18,7 @@ function RelativeHeaders() {
 function AbsoluteHeaders() {
     return (
         <>
+            <th>Location</th>
             <th>New Tests</th>
             <th>New Tests Smoothed</th>
             <th>Total Tests</th>
@@ -34,7 +36,6 @@ function TestTable({ data, thailand }) {
                     Global COVID-19 Tests Data {relative ? "(PT = Per Thousand)" : null}
                 </strong></caption>
                 <thead className="small-table-header">
-                    <th>Location</th>
                     {relative ? <RelativeHeaders /> : <AbsoluteHeaders />}
                 </thead>
                 <tbody>
